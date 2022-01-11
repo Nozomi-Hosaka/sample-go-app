@@ -1,12 +1,11 @@
 version: '3'
-services: 
+services:
   app:
-    container_name: 'go'
-    build: 
-      context: ./infrastructure/go
-      dockerfile: Dockerfile
-    tty: true
     ports:
       - "80:80"
+    build:
+      context: ./
+      dockerfile: Dockerfile
     volumes:
-      - ./src/:/go/src/app
+      - ./app:/go/src/app
+    command: /bin/sh -c "go run src/main.go"
